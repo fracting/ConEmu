@@ -24,6 +24,8 @@ compiler:
   - gcc
 
 script:
+  - wineconsole cmd /c exit 3 #trigger another failure for debugging.
+  - echo $?
   - srcdir=~/src
   - subdir=conemu
   - pkgbuild_repo=https://github.com/Alexpux/MSYS2-packages/trunk/mingw-w64-cross-conemu-git
