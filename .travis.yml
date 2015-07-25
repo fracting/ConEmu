@@ -24,8 +24,6 @@ compiler:
   - gcc
 
 script:
-  - wineconsole cmd /c exit 3 #trigger another failure for debugging.
-  - echo $?
   - srcdir=~/src
   - subdir=conemu
   - pkgbuild_repo=https://github.com/Alexpux/MSYS2-packages/trunk/mingw-w64-cross-conemu-git
@@ -33,6 +31,8 @@ script:
   - ln -svf ${PWD} ${srcdir}/${subdir}
   - cp ${srcdir}/PKGBUILD ~
   - msys2-prepare
+  - wineconsole cmd /c exit 3 #trigger another failure for debugging.
+  - echo $?
   - bash -x msys2-wrapper "ls nonexistent" # trigger failure for debugging
   - msys2-wrapper "makepkg -s --noconfirm --noprogressbar --noextract --skippgpcheck -f"
 
