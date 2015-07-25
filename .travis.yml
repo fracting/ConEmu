@@ -31,10 +31,5 @@ script:
   - ln -svf ${PWD} ${srcdir}/${subdir}
   - cp ${srcdir}/PKGBUILD ~
   - msys2-prepare
-  - wineconsole cmd /c exit 3 #trigger another failure for debugging.
-  - wineconsole ~/.wine/drive_c/msys32/usr/bin/script.exe -e -c "exit 5"
-  - wineconsole ~/.wine/drive_c/msys32/usr/bin/script.exe -e -c "/usr/bin/bash.exe -l -e -c "exit 5"
-  - echo $?
-  - bash -x msys2-wrapper "ls nonexistent" # trigger failure for debugging
   - msys2-wrapper "makepkg -s --noconfirm --noprogressbar --noextract --skippgpcheck -f"
 
