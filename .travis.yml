@@ -31,5 +31,8 @@ script:
   - ln -svf ${PWD} ${srcdir}/${subdir}
   - cp ${srcdir}/PKGBUILD ~
   - msys2-prepare
+  - set -x
+  - msys2-wrapper "ls nonexistent" # trigger failure for debugging
+  - set +x
   - msys2-wrapper "makepkg -s --noconfirm --noprogressbar --noextract --skippgpcheck -f"
 
